@@ -1,0 +1,4 @@
+*.txt
+*.db
+__pycache__
+*.sh
