@@ -5,7 +5,6 @@ import company_commands
 
 
 def main():
-    print("main function called")
     parser = argparse.ArgumentParser(description="Trait-based personality analysis tool.")
     subparsers = parser.add_subparsers(title='commands', dest='command', help='Available commands')
 
@@ -54,8 +53,6 @@ def main():
     company_query_parser.set_defaults(func=company_commands.query_company_trait_match)
 
     args = parser.parse_args()
-    print(f"main - args: {args}")
-    print(f"main - args.command: {args.command}")
 
     if args.command:
         if hasattr(args, 'func'):
