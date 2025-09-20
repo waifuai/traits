@@ -1,3 +1,19 @@
+"""
+Main entry point module for the Personality Analysis System.
+
+This module serves as the command-line interface (CLI) for the personality analysis tool.
+It provides argument parsing and command routing for all available operations including
+trait management, person profile management, and company candidate matching.
+
+The module uses subparsers to organize commands into logical groups:
+- trait: Operations for creating and managing personality traits
+- person: Operations for creating and updating person profiles
+- company: Operations for matching candidates to job descriptions
+
+Functions:
+    main: Entry point function that sets up CLI argument parsing and routes commands.
+"""
+
 import argparse
 import trait_commands
 import person_commands

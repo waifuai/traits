@@ -1,3 +1,15 @@
+"""
+Person Data Access Object (DAO) module for the Personality Analysis System.
+
+This module provides database access operations for person-related data, including
+CRUD operations and database schema management. It implements the Data Access Object
+pattern with a base DAO class for common functionality.
+
+Classes:
+    BaseDAO: Abstract base class defining the interface for all DAO operations.
+    PersonDAO: Concrete implementation for person database operations.
+"""
+
 import sqlite3
 from abc import ABC, abstractmethod
 from typing import Tuple, List, Dict, Optional

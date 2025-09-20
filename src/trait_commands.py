@@ -1,3 +1,15 @@
+"""
+Trait command-line interface module for the Personality Analysis System.
+
+This module contains functions that handle CLI commands related to trait operations,
+including creating new personality traits and listing all available traits with
+their friendliness and dominance scores.
+
+Functions:
+    create_trait: Handles the 'trait create' command to create new personality traits.
+    list_traits: Handles the 'trait list' command to display all available traits.
+"""
+
 from typing import Any
 from trait_dao import TraitDAO
 from personality_models import Personality # Import the correct Personality model

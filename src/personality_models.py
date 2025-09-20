@@ -1,3 +1,15 @@
+"""
+Personality data models module for the Personality Analysis System.
+
+This module defines the core data structures used to represent personality traits
+and statistics throughout the system. It uses Python dataclasses for clean,
+immutable data representation.
+
+Classes:
+    Personality: Represents a personality profile with friendliness and dominance scores.
+    PersonStats: Stores personality statistics and metadata for a person.
+"""
+
 from dataclasses import dataclass
 
 @dataclass

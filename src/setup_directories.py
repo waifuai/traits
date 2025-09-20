@@ -1,3 +1,22 @@
+"""
+Directory and database setup script for the Personality Analysis System.
+
+This script initializes the project environment by creating necessary directories,
+placeholder files, and database structures. It sets up the foundation for the
+personality analysis system to function properly.
+
+The script performs the following tasks:
+- Creates the 'img' directory for storing images
+- Creates placeholder image files for neutral person and company representations
+- Initializes empty SQLite databases for persons and traits
+- Sets up database tables using the TraitDatabase class
+- Provides proper error handling and user feedback
+
+Functions:
+    setup_directories: Main setup function that creates directories and initializes databases.
+    main: Entry point that calls setup_directories and handles exit codes.
+"""
+
 #!/usr/bin/env python3
 import os
 import sys

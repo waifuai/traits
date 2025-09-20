@@ -1,3 +1,20 @@
+"""
+Dependency installation script for the Personality Analysis System.
+
+This script handles the installation of required system dependencies and Python packages
+for the personality analysis system. It supports both Ubuntu Linux and Windows platforms
+with platform-specific installation procedures.
+
+The script installs:
+- System packages: python3, python3-scipy, python3-tk, python3-matplotlib, python3-pip (Ubuntu)
+- Python packages: scikit-learn, numpy, matplotlib, scipy (both platforms)
+
+Functions:
+    install_dependencies_ubuntu: Installs dependencies on Ubuntu systems.
+    install_dependencies_windows: Installs dependencies on Windows systems.
+    main: Main entry point that detects OS and calls appropriate installer.
+"""
+
 #!/usr/bin/env python3
 import sys
 import subprocess

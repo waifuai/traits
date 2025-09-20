@@ -1,3 +1,14 @@
+"""
+Person entity module for the Personality Analysis System.
+
+This module defines the Person class which represents a person entity in the system.
+The Person class serves as a simple data container for person names, with business
+logic and database operations handled by the PersonService and DAO layers.
+
+Classes:
+    Person: Represents a person with basic name validation and representation.
+"""
+
 # Removed imports: Personality, PersonStats, DatabaseConnection, PersonDAO, TraitDAO, Company
 
 class Person:

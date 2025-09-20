@@ -1,3 +1,13 @@
+"""
+Database connection management module for the Personality Analysis System.
+
+This module provides a context manager for handling SQLite database connections
+with proper resource cleanup and timeout configuration.
+
+Classes:
+    DatabaseConnection: Context manager that provides database connections and cursors.
+"""
+
 import sqlite3
 from typing import Tuple
 

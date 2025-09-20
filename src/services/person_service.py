@@ -1,3 +1,21 @@
+"""
+Person service module for the Personality Analysis System.
+
+This module contains the business logic layer for person-related operations,
+including trait management, personality calculations, and description processing.
+It implements weighted averaging algorithms for personality updates.
+
+Classes:
+    PersonService: Handles person operations and personality calculations.
+
+The service provides functionality to:
+- Add individual traits to person profiles
+- Process natural language descriptions to extract personality traits
+- Calculate updated personality scores using weighted averaging
+- Validate and manage person-trait relationships
+- Handle dynamic personality profile updates
+"""
+
 from typing import Dict
 from personality_models import Personality, PersonStats
 from person_dao import PersonDAO

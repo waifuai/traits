@@ -1,3 +1,20 @@
+"""
+Company service module for the Personality Analysis System.
+
+This module contains the business logic layer for company-related operations,
+specifically candidate matching based on job descriptions and personality traits.
+It implements the core matching algorithm using Euclidean distance calculations.
+
+Classes:
+    CompanyService: Handles company matching operations and personality analysis.
+
+The service provides functionality to:
+- Analyze job descriptions to extract target personality requirements
+- Calculate personality compatibility using weighted averaging
+- Rank candidates based on Euclidean distance from target personality
+- Provide detailed matching scores and explanations
+"""
+
 from personality_models import Personality
 from person_dao import PersonDAO
 from trait_dao import TraitDAO

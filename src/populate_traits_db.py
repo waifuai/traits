@@ -1,3 +1,19 @@
+"""
+Traits database population module for the Personality Analysis System.
+
+This module provides functionality to populate the traits database with a comprehensive
+set of default personality traits. Each trait includes friendliness and dominance scores
+that form the foundation of the personality analysis system.
+
+The module creates the traits table schema and inserts predefined traits including:
+- friendly, helpful, collaborative, outgoing, enthusiastic
+- quiet, reserved, dominant, assertive, leader
+- strict, agile, innovative
+
+Functions:
+    populate_traits_db: Creates the traits table and populates it with default data.
+"""
+
 import sqlite3
 from db_connection import DB_TIMEOUT
 

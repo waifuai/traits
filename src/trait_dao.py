@@ -1,3 +1,22 @@
+"""
+Trait Data Access Object (DAO) module for the Personality Analysis System.
+
+This module provides database access operations for trait-related data, including
+CRUD operations, database schema management, and performance optimizations.
+It implements the Data Access Object pattern with a base DAO class for common functionality.
+
+Classes:
+    BaseDAO: Abstract base class defining the interface for all DAO operations.
+    TraitDAO: Concrete implementation for trait database operations with full CRUD support.
+
+The DAO provides functionality for:
+- Creating and managing trait database tables with proper indexing
+- Adding, updating, and retrieving personality traits
+- Input validation and data normalization
+- Database reset and recreation capabilities
+- Error handling for database constraint violations
+"""
+
 import sqlite3
 from abc import ABC, abstractmethod
 from typing import Tuple, List, Dict, Optional

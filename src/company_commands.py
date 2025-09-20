@@ -1,3 +1,14 @@
+"""
+Company command-line interface module for the Personality Analysis System.
+
+This module contains functions that handle CLI commands related to company operations,
+specifically the company query command which finds and ranks candidates based on
+job descriptions using personality trait matching.
+
+Functions:
+    query_company_trait_match: Handles the 'company query' command to find personality matches.
+"""
+
 from typing import Any
 from person_dao import PersonDAO
 from trait_dao import TraitDAO

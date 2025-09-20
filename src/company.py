@@ -1,3 +1,14 @@
+"""
+Company entity module for the Personality Analysis System.
+
+This module defines the Company class which represents a company entity in the system.
+The Company class serves as a simple data container for company names, with business
+logic and database operations handled by the CompanyService.
+
+Classes:
+    Company: Represents a company with basic name validation and representation.
+"""
+
 # Removed imports: Personality, PersonDAO, TraitDAO, distance, Dict, List, Tuple
 
 class Company:

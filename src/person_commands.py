@@ -1,3 +1,16 @@
+"""
+Person command-line interface module for the Personality Analysis System.
+
+This module contains functions that handle CLI commands related to person operations,
+including creating person profiles, adding personality descriptions, and listing
+all person profiles with their personality scores.
+
+Functions:
+    create_person: Handles the 'person create' command to create new person profiles.
+    add_description_to_person: Handles the 'person add_desc' command to update personality traits.
+    list_persons: Handles the 'person list' command to display all person profiles.
+"""
+
 from typing import Any
 from person_dao import PersonDAO
 from trait_dao import TraitDAO
