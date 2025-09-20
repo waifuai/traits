@@ -39,9 +39,10 @@ class PersonDAO(BaseDAO):
                     n_dominance INTEGER DEFAULT 0
                 )
             ''')
-            # Consider adding indexes if performance becomes an issue on lookups
-            # cursor.execute('CREATE INDEX IF NOT EXISTS idx_friendliness ON persons(friendliness)')
-            # cursor.execute('CREATE INDEX IF NOT EXISTS idx_dominance ON persons(dominance)')
+            # Add indexes for better query performance
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_friendliness ON persons(friendliness)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_dominance ON persons(dominance)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_person_name ON persons(person)')
             conn.commit()
 
     def get_all(self) -> List[Dict]:
@@ -82,6 +83,16 @@ class PersonDAO(BaseDAO):
 
     def add_person(self, name: str):
         """Adds a new person to the database with default personality values."""
+        # Input validation
+        if not isinstance(name, str):
+            raise TypeError("Person name must be a string")
+        if not name.strip():
+            raise ValueError("Person name cannot be empty")
+
+        name = name.strip()
+        if len(name) > 100:  # Reasonable limit
+            raise ValueError("Person name cannot exceed 100 characters")
+
         with db_connection.DatabaseConnection(self.db_name) as (conn, cursor):
             try:
                 cursor.execute(
@@ -92,8 +103,6 @@ class PersonDAO(BaseDAO):
                 conn.commit()
             except sqlite3.IntegrityError:
                 # Handle cases where the person might already exist
-                print(f"Warning: Person '{name}' already exists.")
-                # Or raise a custom exception
-                # raise ValueError(f"Person '{name}' already exists.")
+                raise ValueError(f"Person '{name}' already exists.")
 
     # Removed add_trait_to_person method - logic moved to PersonService

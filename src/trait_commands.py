@@ -1,10 +1,14 @@
-# import dao - No longer needed
-# import models - No longer needed
+from typing import Any
 from trait_dao import TraitDAO
 from personality_models import Personality # Import the correct Personality model
 
-def create_trait(args):
+def create_trait(args: Any) -> None:
     """Handles the 'trait create' command."""
+    # Input validation
+    if not isinstance(args.name, str) or not args.name.strip():
+        print("Error: Trait name must be a non-empty string.")
+        return
+
     # Validation
     try:
         friendliness = float(args.friendliness)
@@ -24,24 +28,27 @@ def create_trait(args):
     try:
         # Create Personality object from validated data
         personality = Personality(friendliness, dominance)
-        trait_dao.add_trait(args.name, personality)
-        print(f"Trait '{args.name}' created.")
-    except Exception as e: # Catch potential DB errors (e.g., UNIQUE constraint)
-        print(f"Error creating trait '{args.name}': {e}")
+        trait_dao.add_trait(args.name.strip(), personality)
+        print(f"Trait '{args.name}' created successfully.")
+    except Exception as e:  # Catch potential DB errors (e.g., UNIQUE constraint)
+        print(f"Error creating trait '{args.name}': {str(e)}")
 
 
-def list_traits(args):
+def list_traits(args: Any) -> None:
     """Handles the 'trait list' command."""
     trait_dao = TraitDAO()
     # trait_dao.create_tables() # Removed: Listing should not create tables
     try:
-        traits = trait_dao.get_all_traits() # This method returns List[Dict]
+        traits = trait_dao.get_all_traits()  # This method returns List[Dict]
         if traits:
             print("Available Traits:")
             for trait in traits:
-                # Access dictionary keys
-                print(f"- {trait['trait']}: Friendliness={trait['friendliness']:.2f}, Dominance={trait['dominance']:.2f}")
+                # Handle missing data gracefully
+                trait_name = trait.get('trait', 'Unknown')
+                friendliness = trait.get('friendliness', 0.0)
+                dominance = trait.get('dominance', 0.0)
+                print(f"- {trait_name}: Friendliness={friendliness:.2f}, Dominance={dominance:.2f}")
         else:
             print("No traits found.")
     except Exception as e:
-        print(f"Error listing traits: {e}")
+        print(f"Error listing traits: {str(e)}")

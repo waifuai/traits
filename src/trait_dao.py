@@ -38,6 +38,10 @@ class TraitDAO(BaseDAO):
                     dominance REAL
                 )
             ''')
+            # Add indexes for better query performance
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_trait_name ON traits(trait)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_trait_friendliness ON traits(friendliness)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_trait_dominance ON traits(dominance)')
             conn.commit()
 
     def get_all(self) -> Dict[str, personality_models.Personality]:
@@ -62,6 +66,22 @@ class TraitDAO(BaseDAO):
 
     def add_trait(self, name: str, personality: personality_models.Personality):
         """Adds a new trait to the database."""
+        # Input validation
+        if not isinstance(name, str):
+            raise TypeError("Trait name must be a string")
+        if not name.strip():
+            raise ValueError("Trait name cannot be empty")
+        if not isinstance(personality, personality_models.Personality):
+            raise TypeError("Personality must be a Personality object")
+
+        name = name.strip().lower()  # Normalize trait names
+        if len(name) > 50:  # Reasonable limit
+            raise ValueError("Trait name cannot exceed 50 characters")
+
+        # Validate personality scores
+        if not (-10 <= personality.friendliness <= 10) or not (-10 <= personality.dominance <= 10):
+            raise ValueError("Personality scores must be between -10 and 10")
+
         with db_connection.DatabaseConnection(self.db_name) as (conn, cursor):
             try:
                 cursor.execute(
@@ -70,8 +90,7 @@ class TraitDAO(BaseDAO):
                 )
                 conn.commit()
             except sqlite3.IntegrityError:
-                print(f"Warning: Trait '{name}' already exists.")
-                # Or raise ValueError(f"Trait '{name}' already exists.")
+                raise ValueError(f"Trait '{name}' already exists.")
 
     def update_trait(self, name: str, personality: personality_models.Personality):
         """Updates an existing trait in the database."""

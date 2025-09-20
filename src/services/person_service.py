@@ -1,3 +1,4 @@
+from typing import Dict
 from personality_models import Personality, PersonStats
 from person_dao import PersonDAO
 from trait_dao import TraitDAO
@@ -48,21 +49,38 @@ class PersonService:
             person_stats.n_dominance + 1
         )
 
-    # TODO: Refactor add_description logic - depends on where analysis logic lands
-    # def add_description_to_person(self, person_name: str, description: str):
-    #     """Adds a description and updates personality based on contained traits."""
-    #     # Option 1: Keep dependency on Company's analysis (less ideal)
-    #     # temp_company = Company("TemporaryAnalysisCompany")
-    #     # trait_weights = temp_company._get_trait_weights_from_description(description)
-    #
-    #     # Option 2: Move analysis logic here or to a dedicated service
-    #     # trait_weights = self._analyze_description_for_traits(description)
-    #
-    #     # for trait_name in trait_weights:
-    #     #     try:
-    #     #         self.add_trait_to_person(person_name, trait_name)
-    #     #     except ValueError as e:
-    #     #         print(f"Warning: {e}") # Log or handle missing traits/persons
+    def add_description_to_person(self, person_name: str, description: str):
+        """Adds a description and updates personality based on contained traits."""
+        # Input validation
+        if not isinstance(person_name, str):
+            raise TypeError("Person name must be a string")
+        if not isinstance(description, str):
+            raise TypeError("Description must be a string")
+        if not person_name.strip():
+            raise ValueError("Person name cannot be empty")
+        if not description.strip():
+            raise ValueError("Description cannot be empty")
+
+        person_name = person_name.strip()
+        description = description.strip()
+
+        trait_weights = self._analyze_description_for_traits(description)
+
+        if not trait_weights:
+            raise ValueError("No valid traits found in the provided description.")
+
+        added_traits = []
+        for trait_name in trait_weights:
+            try:
+                self.add_trait_to_person(person_name, trait_name)
+                added_traits.append(trait_name)
+            except ValueError as e:
+                print(f"Warning: {e}")  # Log missing traits but continue
+
+        if not added_traits:
+            raise ValueError("No valid traits could be added from the description.")
+
+        return added_traits
 
     def _calculate_new_personality(
         self,
@@ -96,12 +114,14 @@ class PersonService:
         new = float(new)
         return ((current * n) + new) / (n + 1)
 
-    # Potential future method if description analysis is moved here
-    # def _analyze_description_for_traits(self, description: str) -> Dict[str, float]:
-    #     """Extracts trait names and assigns weights from a description string."""
-    #     words = description.lower().split()
-    #     trait_weights = {}
-    #     for word in words:
-    #         if self.trait_dao.get_trait(word): # Check existence via injected DAO
-    #              trait_weights[word] = 1.0  # Assign weight 1.0 for now
-    #     return trait_weights
+    def _analyze_description_for_traits(self, description: str) -> Dict[str, float]:
+        """Extracts trait names and assigns weights from a description string."""
+        if not isinstance(description, str):
+            raise TypeError("Description must be a string")
+
+        words = description.lower().split()
+        trait_weights = {}
+        for word in words:
+            if self.trait_dao.get_trait(word):  # Check existence via injected DAO
+                trait_weights[word] = 1.0  # Assign weight 1.0 for now
+        return trait_weights

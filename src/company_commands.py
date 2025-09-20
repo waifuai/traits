@@ -1,22 +1,20 @@
-# import dao - No longer needed
-# import company - No longer needed
-# import personality_models - No longer needed
+from typing import Any
 from person_dao import PersonDAO
 from trait_dao import TraitDAO
 from services.company_service import CompanyService
 
-def query_company_trait_match(args):
+def query_company_trait_match(args: Any) -> None:
     """Handles the 'company query' command using the CompanyService."""
     # print("query_company_trait_match function called") # Removed debug print
     company_description = args.company_description
 
     # Basic input validation
-    if not isinstance(company_description, str) or not company_description:
+    if not isinstance(company_description, str) or not company_description.strip():
         print("Error: Company description must be a non-empty string.")
         return
-    if not isinstance(args.company_name, str) or not args.company_name:
-         print("Error: Company name must be a non-empty string.")
-         return
+    if not isinstance(args.company_name, str) or not args.company_name.strip():
+        print("Error: Company name must be a non-empty string.")
+        return
 
     # Instantiate DAOs and Service
     person_dao = PersonDAO()
