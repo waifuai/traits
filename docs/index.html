@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>traits</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #7ee787;
+  --accent3: #d2a8ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+header p { color: var(--text-muted); font-size: 1.1rem; }
+section { margin-bottom: 2.5rem; }
+h2 { font-size: 1.4rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 0.5rem; }
+.count { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
+.section-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.link-list { display: flex; flex-direction: column; gap: 0.25rem; }
+.link-list a { color: var(--accent); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 6px; transition: background 0.15s; font-size: 0.95rem; }
+.link-list a:hover { background: var(--card-bg); text-decoration: underline; }
+.readme-content { margin-top: 2rem; padding: 1.5rem; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); }
+.readme-content h1 { font-size: 1.8rem; margin-bottom: 1rem; }
+.readme-content h2 { font-size: 1.3rem; }
+.readme-content pre { background: var(--bg); padding: 1rem; border-radius: 6px; overflow-x: auto; }
+.readme-content code { background: var(--bg); padding: 0.2em 0.4em; border-radius: 3px; }
+.readme-content pre code { background: none; }
+footer { text-align: center; color: var(--text-muted); font-size: 0.8rem; padding-top: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>traits</h1>
+    <p></p>
+  </header>
+    <section>
+    <h2>Documentation <span class="count">(2)</span></h2>
+    <p class="section-desc">Project documentation and guides</p>
+    <div class="link-list">
+      <a href="README.html">Personality Analysis System</a>
+      <a href="manim-animation-README.html">Personality Analysis Animation</a>
+    </div>
+  </section>
+  <section>
+    <h2>Project Overview</h2>
+    <div class="readme-content">
+<h1>Personality Analysis System</h1>
+<p>A sophisticated trait-based personality analysis tool that helps companies find candidates whose personalities best match specific job descriptions. The system analyzes personality traits using friendliness and dominance scores to create compatibility rankings.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Advanced Trait Management</strong>: Create and manage personality traits with precise friendliness/dominance scores</li>
+<li><strong>Dynamic Personality Profiling</strong>: Automatically update personality profiles from natural language descriptions</li>
+<li><strong>Intelligent Company Matching</strong>:</li>
+<li>Extract personality requirements from job descriptions</li>
+<li>Calculate compatibility using Euclidean distance algorithms</li>
+<li>Rank candidates by personality fit with detailed scoring</li>
+<li><strong>Service-Oriented Architecture</strong>: Clean separation between data access, business logic, and command interfaces</li>
+<li><strong>Comprehensive CLI</strong>: User-friendly command-line interface with detailed help and validation</li>
+</ul>
+<h2>Installation</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Python 3.7+</li>
+<li>SQLite3</li>
+<li>pip (Python package manager)</li>
+</ul>
+<h3>Setup Steps</h3>
+<ol>
+<li>
+<p><strong>Clone the Repository</strong>
+   <code>bash
+   git clone &lt;repository-url&gt;
+   cd traits</code></p>
+</li>
+<li>
+<p><strong>Set Up Virtual Environment</strong> (Recommended)
+   <code>bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate</code></p>
+</li>
+<li>
+<p><strong>Install Dependencies</strong>
+   <code>bash
+   python setup_dependencies.py
+   # Or manually install required packages:
+   pip install scipy numpy</code></p>
+</li>
+<li>
+<p><strong>Initialize the System</strong>
+   ```bash
+   # Set up directories and databases
+   python setup_directories.py</p>
+</li>
+</ol>
+<p># Populate default traits
+   python populate_traits_db.py
+   ```</p>
+<h2>Usage</h2>
+<h3>Command Line Interface</h3>
+<p>The tool provides a comprehensive CLI with the following commands:</p>
+<h4>Trait Operations</h4>
+<pre><code class="language-bash"># Create a new personality trait
+python main.py trait create &lt;name&gt; &lt;friendliness&gt; &lt;dominance&gt;
+
+# List all available traits
+python main.py trait list
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash"># Create a trait for being detail-oriented
+python main.py trait create &quot;detail_oriented&quot; 7.0 5.0
+
+# Create a trait for being creative
+python main.py trait create &quot;creative&quot; 8.0 6.0
+</code></pre>
+<h4>Person Operations</h4>
+<pre><code class="language-bash"># Create a new person profile
+python main.py person create &quot;&lt;full_name&gt;&quot;
+
+# Add personality description to a person
+python main.py person add_desc &quot;&lt;name&gt;&quot; &quot;&lt;description&gt;&quot;
+
+# List all person profiles
+python main.py person list
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash"># Create person profiles
+python main.py person create &quot;Alice Johnson&quot;
+python main.py person create &quot;Bob Smith&quot;
+
+# Add personality descriptions
+python main.py person add_desc &quot;Alice Johnson&quot; &quot;friendly, collaborative team player with strong leadership qualities&quot;
+python main.py person add_desc &quot;Bob Smith&quot; &quot;analytical, detail-oriented problem solver who works well independently&quot;
+</code></pre>
+<h4>Company Matching</h4>
+<pre><code class="language-bash"># Find candidates matching a job description
+python main.py company query &quot;&lt;company_name&gt;&quot; &quot;&lt;job_description&gt;&quot;
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash"># Match for a leadership position
+python main.py company query &quot;TechCorp&quot; &quot;seeking innovative leader with strong communication skills&quot;
+
+# Match for a research position
+python main.py company query &quot;ResearchLab&quot; &quot;looking for analytical, detail-oriented researcher who can work independently&quot;
+</code></pre>
+<h3>Complete Workflow Example</h3>
+<pre><code class="language-bash"># 1. Set up some traits
+python main.py trait create &quot;innovative&quot; 9.0 8.0
+python main.py trait create &quot;analytical&quot; 3.0 4.0
+python main.py trait create &quot;collaborative&quot; 8.0 5.0
+
+# 2. Create candidate profiles
+python main.py person create &quot;Sarah Chen&quot;
+python main.py person create &quot;Mike Rodriguez&quot;
+python main.py person create &quot;Emma Davis&quot;
+
+# 3. Add personality descriptions
+python main.py person add_desc &quot;Sarah Chen&quot; &quot;innovative and creative problem solver with strong leadership skills&quot;
+python main.py person add_desc &quot;Mike Rodriguez&quot; &quot;analytical and detail-oriented researcher who prefers working independently&quot;
+python main.py person add_desc &quot;Emma Davis&quot; &quot;collaborative team player who excels in group settings&quot;
+
+# 4. Find matches for different job types
+python main.py company query &quot;InnovationTeam&quot; &quot;seeking creative innovators for our R&amp;D department&quot;
+python main.py company query &quot;ResearchDept&quot; &quot;looking for independent analytical thinkers&quot;
+python main.py company query &quot;MarketingTeam&quot; &quot;need collaborative team players for our creative campaigns&quot;
+</code></pre>
+<h2>Project Architecture</h2>
+<h3>Core Components</h3>
+<ul>
+<li><strong><code>main.py</code></strong> - CLI entry point with argument parsing and command routing</li>
+<li><strong><code>services/</code></strong> - Business logic layer:</li>
+<li><code>person_service.py</code> - Person-related business operations</li>
+<li><code>company_service.py</code> - Company matching and analysis logic</li>
+<li><strong><code>person_dao.py</code></strong> - Data access object for person database operations</li>
+<li><strong><code>trait_dao.py</code></strong> - Data access object for trait database operations</li>
+<li><strong><code>personality_models.py</code></strong> - Data classes for personality traits and statistics</li>
+<li><strong><code>db_connection.py</code></strong> - Database connection context manager</li>
+</ul>
+<h3>Command Modules</h3>
+<ul>
+<li><strong><code>trait_commands.py</code></strong> - CLI handlers for trait operations</li>
+<li><strong><code>person_commands.py</code></strong> - CLI handlers for person operations</li>
+<li><strong><code>company_commands.py</code></strong> - CLI handlers for company matching</li>
+</ul>
+<h2>Database Schema</h2>
+<h3>Persons Table</h3>
+<pre><code class="language-sql">CREATE TABLE persons (
+    person TEXT PRIMARY KEY,
+    friendliness REAL DEFAULT 0.0,
+    dominance REAL DEFAULT 0.0,
+    n_friendliness INTEGER DEFAULT 0,
+    n_dominance INTEGER DEFAULT 0
+)
+</code></pre>
+<h3>Traits Table</h3>
+<pre><code class="language-sql">CREATE TABLE traits (
+    trait TEXT PRIMARY KEY,
+    friendliness REAL,
+    dominance REAL
+)
+</code></pre>
+<h2>Technical Details</h2>
+<h3>Personality Analysis Algorithm</h3>
+<ol>
+<li><strong>Trait Extraction</strong>: Natural language descriptions are parsed to identify known personality traits</li>
+<li><strong>Weighted Averaging</strong>: Personality scores are calculated using weighted averages, giving more influence to recent traits</li>
+<li><strong>Compatibility Scoring</strong>: Euclidean distance between personality vectors determines candidate-job fit</li>
+<li><strong>Dynamic Updates</strong>: Personality profiles update automatically as new trait information is added</li>
+</ol>
+<h3>Default Traits</h3>
+<p>The system comes pre-loaded with these personality traits:</p>
+<ul>
+<li><strong>friendly</strong> (7.0, 6.0) - Warm and approachable</li>
+<li><strong>helpful</strong> (6.0, 4.0) - Supportive and service-oriented</li>
+<li><strong>collaborative</strong> (8.0, 5.0) - Team-focused and cooperative</li>
+<li><strong>outgoing</strong> (9.0, 5.0) - Socially active and extroverted</li>
+<li><strong>enthusiastic</strong> (8.5, 4.0) - Energetic and positive</li>
+<li><strong>quiet</strong> (3.0, 2.0) - Reserved and introspective</li>
+<li><strong>reserved</strong> (2.0, 3.0) - Private and controlled</li>
+<li><strong>dominant</strong> (6.0, 8.0) - Assertive and commanding</li>
+<li><strong>assertive</strong> (7.5, 7.5) - Confident and decisive</li>
+<li><strong>leader</strong> (9.0, 9.0) - Natural leadership qualities</li>
+<li><strong>strict</strong> (2.0, 8.0) - Firm and uncompromising</li>
+<li><strong>agile</strong> (8.0, 7.0) - Adaptable and quick-thinking</li>
+<li><strong>innovative</strong> (9.0, 6.0) - Creative and original</li>
+</ul>
+<h2>Development</h2>
+<h3>Running Tests</h3>
+<pre><code class="language-bash">python -m pytest tests/
+</code></pre>
+<h3>Database Management</h3>
+<pre><code class="language-bash"># Reset and repopulate databases
+python populate_db.py
+</code></pre>
+<h2>Contributing</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Make your changes</li>
+<li>Add tests for new functionality</li>
+<li>Submit a pull request</li>
+</ol>
+<h2>License</h2>
+<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+<h2>Support</h2>
+<p>For bug reports or feature requests, please open an issue in the project repository.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Source Code</h2>
+    <p class="section-desc">View the full repository on GitHub</p>
+    <div class="link-list">
+      <a href="https://github.com/waifuai/traits" target="_blank">github.com/waifuai/traits</a>
+    </div>
+  </section>
+  <footer>
+    <p>Generated for AI agent crawlability</p>
+  </footer>
+</div>
+</body>
+</html>

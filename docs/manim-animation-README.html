@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personality Analysis Animation</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #e6edf3; background: #0d1117; }
+  pre { background: #161b22; padding: 1rem; border-radius: 6px; overflow-x: auto; border: 1px solid #30363d; }
+  code { background: #161b22; padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.9em; }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #30363d; padding: 8px; text-align: left; }
+  th { background: #161b22; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { border-bottom: 1px solid #30363d; padding-bottom: 0.3em; }
+  blockquote { border-left: 4px solid #30363d; padding-left: 1rem; color: #8b949e; }
+  .back-link { display: inline-block; margin-bottom: 1rem; color: #8b949e; font-size: 0.9rem; }
+  img { max-width: 100%; }
+</style>
+
+</head>
+<body>
+<a class="back-link" href="index.html">&larr; Back to index</a>
+<h1>Personality Analysis Animation</h1>
+<p>A Manim animation explaining the Personality Analysis System architecture and functionality.</p>
+<h2>Animation Overview</h2>
+<p>This animation demonstrates the key concepts of the personality analysis system:</p>
+<h3>1. System Architecture</h3>
+<ul>
+<li>Shows the main components: Traits DB, Persons DB, Companies, and Matching Engine</li>
+<li>Illustrates how data flows between components</li>
+</ul>
+<h3>2. Data Processing Flow</h3>
+<ul>
+<li>Demonstrates how person descriptions are converted to personality traits</li>
+<li>Shows the analysis process from text input to numerical personality scores</li>
+</ul>
+<h3>3. Personality Matching Process</h3>
+<ul>
+<li>Explains how job descriptions are analyzed for target personalities</li>
+<li>Shows Euclidean distance calculation for candidate ranking</li>
+<li>Demonstrates the final ranked results</li>
+</ul>
+<h3>4. Technical Implementation</h3>
+<ul>
+<li>CLI command examples</li>
+<li>Database structure visualization</li>
+<li>Results output format</li>
+</ul>
+<h2>Features Explained</h2>
+<ul>
+<li><strong>Trait-based Analysis</strong>: How personality traits (friendliness/dominance) are extracted from text</li>
+<li><strong>Dynamic Personality Updates</strong>: How profiles evolve as new traits are added</li>
+<li><strong>Euclidean Distance Matching</strong>: The mathematical approach to finding personality compatibility</li>
+<li><strong>Service Architecture</strong>: Clean separation between DAOs, Services, and CLI commands</li>
+</ul>
+<h2>Running the Animation</h2>
+<pre><code class="language-bash">manim -pql manim-animation.py PersonalityAnalysisAnimation
+</code></pre>
+<h2>Output</h2>
+<p>The animation generates a video file at:
+<code>media/videos/manim-animation/480p15/PersonalityAnalysisAnimation.mp4</code></p>
+<h2>Educational Value</h2>
+<p>This animation is designed to help understand:
+- How personality analysis systems work
+- The mathematics behind trait matching
+- System architecture patterns
+- Data flow in analytical applications</p>
+</body>
+</html>
